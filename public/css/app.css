@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en");
+body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  background-color: #505050;
+  color: white;
+  text-align: center; }
+
+.weather-wrapper {
+  display: inline-block;
+  min-width: 200px;
+  margin: 30px 0; }
+
+.openweathermap-logo {
+  display: block;
+  margin: 0 auto 20px; }
+
+p.w-location,
+p.w-temp {
+  font-size: 3em; }
+
+p.w-desc,
+p.w-min-max {
+  font-size: 2em; }
+
+.btn-units {
+  display: none !important;
+  margin-top: 20px;
+  color: #353535; }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3Jlc291cmNlcy9zYXNzL2FwcC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGlJQUFZO0FBRVo7RUFDSSwrQ0FBOEM7RUFDOUMsMEJBQXlCO0VBQ3pCLGFBQVk7RUFDWixtQkFBa0IsRUFDckI7O0FBRUQ7RUFDSSxzQkFBcUI7RUFDckIsaUJBQWdCO0VBQ2hCLGVBQWMsRUFDakI7O0FBRUQ7RUFDSSxlQUFjO0VBQ2Qsb0JBQW1CLEVBQ3RCOztBQUVEOztFQUVJLGVBQWMsRUFDakI7O0FBRUQ7O0VBRUksZUFBYyxFQUNqQjs7QUFFRDtFQUNJLHlCQUF3QjtFQUN4QixpQkFBZ0I7RUFDaEIsZUFBYyxFQUNqQiIsImZpbGUiOiJhcHAuY3NzIn0= */
