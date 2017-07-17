@@ -1,7 +1,7 @@
 {
-    "name": "random-quote-machine",
+    "name": "local-weather",
     "version": "1.0.0",
-    "description": "Build a Random Quote Machine. A Free Code Camp Front End Project.",
+    "description": "Show the Local Weather. A Free Code Camp Front End Project.",
     "main": "index.js",
     "scripts": {
         "build-task:scss-compile": "node-sass-chokidar --source-map true resources/sass/ -o public/css",
