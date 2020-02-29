@@ -1,55 +1,60 @@
 $(document).ready(function() {
-    if (location.protocol === 'https:') {
-        alert('Due to the https restriction of openweathermap.org api, the app won\'t work under HTTP over SSL protocol (https://codepen.io). Please change the current protocol to http://codepen.io to get it work.');
+    getWeatherInfo($('.btn-units').attr('data-unit'), $('#selLocation').val());
+
+    function changeColour (city) {
+        if (!city.id) {
+            return city.text;
+        }
+        var $city = $(
+            '<span style="color: #333;"> ' + city.text + '</span>'
+        );
+        return $city;
     }
-    else {
-        getWeatherInfo('metric');
-    }
+
+    $('#selLocation').select2({
+        templateResult: changeColour
+    });
+
+    $('#selLocation').on('change', function() {
+        getWeatherInfo($('.btn-units').attr('data-unit'), $(this).val());
+    });
+
+    $('.btn-units').on('click', function() {
+        getWeatherInfo($('.btn-units').attr('data-unit'), $('#selLocation').val());
+    });
 });
 
-const callApi = function(url, callback) {
+var callApi = function(url, callback) {
     $.ajax({
         method: "GET",
         url: url,
         dataType: "jsonp"
     })
         .done(callback)
-        .fail(function() {
+        .fail(function(e) {
             alert( "GET request failed!" );
         });
 };
 
-const getWeatherInfo = function(strUnits) {
-    var link = 'http://api.openweathermap.org/data/2.5/weather?';
+var getWeatherInfo = function (strUnits, cityID) {
+    var link = 'https://api.openweathermap.org/data/2.5/weather?';
     // Brisbane, Australia
-    var cityID = 'id=7839562';
+    var strCityID = 'id=' + cityID;
     // Celsius: units=metric, Fahrenheit: units=imperial
-    var units = '&units='+strUnits;
+    var newUnit = (strUnits == 'metric' ? 'imperial' : 'metric');
+    var newSymbol = (strUnits == 'metric' ? '°F' : '°C');
+    var units = '&units=' + newUnit;
     //  English: lang=en
     var lang = '&lang=en';
     var appID = '&APPID=d201b3efd2f2e7cac91ea989da17014d';
-    callApi(link+cityID+units+lang+appID, function(data) {
-        $('p.w-location').html(data.name+', '+data.sys.country);
-        $('.w-icon').html('<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png" alt="Icon depicting current weather.">');
+
+    callApi(link + strCityID + units + lang + appID, function (data) {
+        $('p.w-location').html(data.name + ', ' + data.sys.country);
+        $('.w-icon').html('<img src="https://openweathermap.org/img/w/' + data.weather[0].icon + '.png" alt="Icon depicting current weather.">');
         $('p.w-desc').html(data.weather[0].description);
-        $('p.w-temp').html(data.main.temp);
-        $('p.w-min-max').html(data.main.temp_min+' - '+data.main.temp_max);
+        $('p.w-temp').html(data.main.temp + ' ' + newSymbol);
+        $('p.w-min-max').html(data.main.temp_min + ' ' + newSymbol + ' - ' + data.main.temp_max + ' ' + newSymbol);
         $('.btn-units').attr('style', 'display: inline-block !important');
-        switch(strUnits) {
-            case 'metric':
-                $('p.w-temp').html(data.main.temp+' &#176;C');
-                $('.btn-units').html('Toggle to Fahrenheit');
-                $('.btn-units').on('click', function() {
-                    getWeatherInfo('imperial');
-                });
-                break;
-            case 'imperial':
-                $('p.w-temp').html(data.main.temp+' &#176;F');
-                $('.btn-units').html('Toggle to Celsius');
-                $('.btn-units').on('click', function() {
-                    getWeatherInfo('metric');
-                });
-                break;
-        };
+        $('.btn-units').attr('data-unit', newUnit);
     });
 };

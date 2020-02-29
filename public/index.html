@@ -11,29 +11,39 @@
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="weather-wrapper">
-                    <!-- logo image copyrighted by openWeatherMap -->
-                    <a class="openweathermap-logo" href="https://openweathermap.org" title="Visit Open Weather Map home page">
-                        <img src="https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/logo_OpenWeatherMap_orange.svg" alt="openweathermap" height="30" width="240">
-                    </a>
-                    <p class="w-location"></p>
-                    <div class="w-icon"></div>
-                    <p class="w-desc"></p>
-                    <p class="w-temp"></p>
-                    <p class="w-min-max"></p>
-                    <button class="btn btn-default btn-units">Toggle to Celsius</button>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="weather-wrapper">
+                <!-- logo image copyrighted by openWeatherMap -->
+                <a class="openweathermap-logo" href="https://openweathermap.org" title="Visit Open Weather Map home page">
+                    <img src="https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/logo_OpenWeatherMap_orange.svg" alt="openweathermap" height="30" width="240">
+                </a>
+                <select id="selLocation">
+                    <option value="2078025">Adelaide SA AU</option>
+                    <option value="7839562" selected >Brisbane QLD AU</option>
+                    <option value="2172517">Canberra ACT AU</option>
+                    <option value="7839402">Darwin NT AU</option>
+                    <option value="2163355">Hobart TAS AU</option>
+                    <option value="7839805">Melbourne VIC AU</option>
+                    <option value="2063523">Perth WA AU</option>
+                    <option value="2147714">Sydney NSW AU</option>
+                </select>
+                <p class="w-location"></p>
+                <div class="w-icon"></div>
+                <p class="w-desc"></p>
+                <p class="w-temp"></p>
+                <p class="w-min-max"></p>
+                <button class="btn btn-default btn-units" data-unit="imperial">Toggle to Celsius</button>
             </div>
         </div>
     </div>
+</div>
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -47,6 +57,7 @@
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
 </html>
