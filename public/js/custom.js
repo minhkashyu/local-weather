@@ -43,6 +43,7 @@ var getWeatherInfo = function (strUnits, cityID) {
     // Celsius: units=metric, Fahrenheit: units=imperial
     var newUnit = (strUnits == 'metric' ? 'imperial' : 'metric');
     var newSymbol = (strUnits == 'metric' ? '°F' : '°C');
+    var newText = (strUnits == 'metric' ? 'Toggle to Celsius' : 'Toggle to Fahrenheit');
     var units = '&units=' + newUnit;
     //  English: lang=en
     var lang = '&lang=en';
@@ -56,5 +57,6 @@ var getWeatherInfo = function (strUnits, cityID) {
         $('p.w-min-max').html(data.main.temp_min + ' ' + newSymbol + ' - ' + data.main.temp_max + ' ' + newSymbol);
         $('.btn-units').attr('style', 'display: inline-block !important');
         $('.btn-units').attr('data-unit', newUnit);
+        $('.btn-units').html(newText);
     });
 };
