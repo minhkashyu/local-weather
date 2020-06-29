@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
 
     $('.btn-units').on('click', function() {
-        getWeatherInfo($('.btn-units').attr('data-unit'), $('#selLocation').val());
+        getWeatherInfo($('.btn-units').attr('data-unit'), $('#selLocation').val(), true);
     });
 });
 
@@ -36,14 +36,21 @@ var callApi = function(url, callback) {
         });
 };
 
-var getWeatherInfo = function (strUnits, cityID) {
+var getWeatherInfo = function (strUnits, cityID, force_unit_changed) {
     var link = 'https://api.openweathermap.org/data/2.5/weather?';
     // Brisbane, Australia
     var strCityID = 'id=' + cityID;
     // Celsius: units=metric, Fahrenheit: units=imperial
-    var newUnit = (strUnits == 'metric' ? 'imperial' : 'metric');
-    var newSymbol = (strUnits == 'metric' ? '°F' : '°C');
-    var newText = (strUnits == 'metric' ? 'Toggle to Celsius' : 'Toggle to Fahrenheit');
+    var newUnit = (strUnits == 'metric' ? 'metric' : 'imperial');
+    var newSymbol = (strUnits == 'metric' ? '°C' : '°F');
+    var newText = (strUnits == 'metric' ? 'Toggle to Fahrenheit' : 'Toggle to Celsius');
+
+    if (force_unit_changed) {
+        newUnit = (strUnits == 'metric' ? 'imperial' : 'metric');
+        newSymbol = (strUnits == 'metric' ? '°F' : '°C');
+        newText = (strUnits == 'metric' ? 'Toggle to Celsius' : 'Toggle to Fahrenheit');
+    }
+
     var units = '&units=' + newUnit;
     //  English: lang=en
     var lang = '&lang=en';
